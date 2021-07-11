@@ -1,0 +1,31 @@
+<style>
+    .errorlist{
+        color:red;
+    }
+
+</style>
+
+
+<h1>  Register Page  </h1>
+<div class = 'container'>
+    <div class ='row'>
+        <div class ="col-md-6- mx auto"> 
+            <h3>Customer Registration Form </h3>
+            <form method ='POST'>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button> Sign Up </buttion>
+            </form>
+
+        </div>
+            <p> or you  have an account? <a href="{% url 'recommapp:login' %}">Login Here</a></p>    
+    </div>
+
+
+</div>
+
+
+
+
+
+

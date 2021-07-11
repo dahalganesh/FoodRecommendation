@@ -1,0 +1,33 @@
+<html>  
+  <div class = 'container'>
+    <div class = 'row'>
+        <div class = 'col-md-8'>
+            <h3> list of item in my cart</h3>
+                <table class='table'> 
+                    <thead>
+                        <tr>
+                        <th>SN</th>
+                          <th>Product</th>
+                            <th>Rate</th>
+                              <th>Quantity</th>
+                                <th>Subtotal</th>
+                                  <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for c in cart.cartproduct_set.all %}
+                        <tr>
+                          <td> {{forloop.counter}} </td>
+                          <td> {{c.product.title}} </td>
+                          <td> {{c.rate}} </td>
+                          <td> {{c.quantity}} </td>
+                          <td> {{c.subtotal}} </td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+
+        </div>
+    </div>
+  </div>
+</html>

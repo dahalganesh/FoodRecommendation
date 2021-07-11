@@ -1,0 +1,79 @@
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+  rel="stylesheet"
+/>
+
+
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"
+></script>
+
+{% if request.user.customer%}
+Welcome{{request.user.username}}
+<a href="{% url 'recommapp:logout' %}">Logout</a>
+{% else %}
+
+<a href ="{% url 'recommapp:login' %}"> Login </a> 
+
+{% endif %}
+
+
+
+
+<h1 clas=" text-center"> Some Of The Menu Items </h1>
+<div class = 'container'>
+  <h3> Menu </h3><hr>
+  {% for category in categorys%}
+    <h4>{{category.title}}</h4>   
+     <div class ="container">
+          <div class="row " >
+              {% for  product in category.product_set.all %}
+              <div class='col-md-4'>
+              <div class='m-2'>
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img
+                        src="{{product.image.url}} " class="img-fluid" style=" height:; object-fit:cover;"
+                      
+                    >
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">
+                    {{product.description}}
+                    </p>
+                    <hr>
+                    
+                    <a href="{% url 'recommapp:addtocart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                  
+                    <h5 style='display: inline-block ;float:right'> 
+                    Rs.{{product.price|floatformat:2}}</h5>
+                  </div>
+                </div>
+            
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+
+
+  {% endfor %}
+</div>
+
+
+
+ 
