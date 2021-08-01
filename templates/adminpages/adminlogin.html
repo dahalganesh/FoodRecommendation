@@ -1,0 +1,64 @@
+{% extends 'adminpages/adminbase.html' %}
+
+
+{% block content %}
+    <div class = 'container text-center'  style =" margin:80px;">
+        <div class ='row'>
+            <div class ="col-md-6- mx auto"> 
+            <h1> Wellcome to Admin Login Page </h1>
+                <form method ='POST'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class ='btn btn-primary'> Sign In  </buttion>
+                    {% if error %}
+                    <li> {{error}}</li>
+                    {% endif  %} 
+                </form>
+            
+            </div>  
+    
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

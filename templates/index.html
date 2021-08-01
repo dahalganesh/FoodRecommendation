@@ -22,9 +22,7 @@
     </head>
 
     <body>
-            {% block content %}
-            {% endblock  %}
-
+            
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="row">
@@ -36,34 +34,23 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand"  href="{% url 'recommapp:index' %}"> FoodRecommendation </a>
+                        <a class="navbar-brand"  href="{% url 'recommapp:index' %}" > FoodRecommendation </a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
                            
-
-                            <li><input class ="search_my" type ="text" placeholder ="search" /></li>
                              <li><a class="color_animation" href="/items">ITEMS</a></li>
 
-                            {% comment %} <li><a class="navactive color_animation" href="#top">HOME</a></li>
-                            <li><a class="color_animation" href="#story">ABOUT US</a></li>
-                            <li><a class="color_animation" href="#pricing">MENU</a></li>
-                            <li><a class="color_animation" href="#beer">GELLERY</a></li>
-                            {% comment %} <li><a class="color_animation" href="#bread">BREAD</a></li>
-                            <li><a class="color_animation" href="#featured">FEATURED</a></li> {% endcomment %}
-                            <li><a class="color_animation" href="#contact">CONTACT</a></li> 
                           
-
-
-
-                            
-                            <li><a class="color_animation" href ="{% url 'recommapp:login' %}">LOGIN</a></li>
                             <li><a class="color_animation" href = "{% url 'recommapp:mycart' %}"> VIEWCART</a></li>
                             
-                            {% comment %} <li><a class="color_animation" href="/register">REGISTER</a></li> {% endcomment %}
-                          
+    
+                           <li><a class="color_animation" href ="{% url 'recommapp:login' %}">LOGIN</a></li>
+                            <li><a class="color_animation" href ="{% url 'recommapp:register' %}">REGISTER</a></li>
+                                
+                           
 
                         </ul>
 
@@ -123,13 +110,7 @@
                 <div class="container">
                     <div class="row">
                         <div id="w">
-                            <ul id="filter-list" class="clearfix">
-                                <li class="filter" data-filter="all">All</li>
-                                <li class="filter" data-filter="breakfast">Breakfast</li>
-                                <li class="filter" data-filter="special">Special</li>
-                                <li class="filter" data-filter="desert">Desert</li>
-                                <li class="filter" data-filter="dinner">Dinner</li>
-                            </ul><!-- @end #filter-list -->    
+                           <!-- @end #filter-list -->    
                             <ul id="portfolio">
                                 <li class="item breakfast"><img src="{% static 'images/food_icon01.jpg' %}" alt="Food" >
                                     <h2 class="white">$20</h2>
@@ -327,15 +308,14 @@
                 <div class="col-md-6">
                     <span class="social_heading">FOLLOW</span>
                     <ul class="social_icons">
-                        <li><a class="icon-twitter color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-github color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-linkedin color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-mail color_animation" href="#"></a></li>
+                        <li><a class="icon-twitter color_animation" href="https://twitter.com/" target="_blank"></a></li>
+                        <li><a class="icon-github color_animation" href="https://github.com/dahalganesh" target="_blank"></a></li>
+                       
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <span class="social_heading">OR DIAL</span>
-                    <span class="social_info"><a class="color_animation" href="tel:883-335-6524">(941) 883-335-6524</a></span>
+                    <span class="social_info"><a class="color_animation" href="tel:883-335-6524">(041)530955</a></span>
                 </div>
             </div>
         </section>
@@ -344,9 +324,10 @@
 
         <section id="contact">
             <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.005792836096!2d85.31891051490021!3d27.65529248281349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb177c56a520d9%3A0xf3d0d1e37134dfb7!2sCosmos%20College%20of%20Management%20and%20Technology!5e0!3m2!1sen!2snp!4v1627655398218!5m2!1sen!2snp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>10
+                {% comment %} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> {% endcomment %}
             </div>
-            <div class="container">
+            {% comment %} <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="inner contact">
@@ -380,8 +361,8 @@
                         </div><!-- End Inner -->
                     </div>
                 </div>
-            </div>
-        </section>
+            </div> {% endcomment %}
+        </section> 
 
         <!-- ============ Footer Section  ============= -->
 

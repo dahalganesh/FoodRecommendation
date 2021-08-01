@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<div class="container" style = 'margin:80px;'> 
+    <div class="row">
+       <div class ="col-md-8">
+         <h3>search here....<span class ='text-info'>"{{request.GET.keyword}}"</span></h3>
+         <hr/>
+            <div class ='container'>
+                <div class ='row'>
+                    {% for result in results %}
+                        <div class='col-md-6'>
+                            <div class='m-2'>
+                                <div class="card" >
+                                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                        <img
+                                            src="{{result.image.url}}"
+                                            class="img-fluid" style=" height:200px; object-fit:cover;"
+                                        />
+                                        <a href="#!">
+                                        <div class="mask" style="background-color:rgba(251, 251, 251, 0.15);"></div>
+                                         </a>
+                                        </div>
+                                       <div class="card-body">
+                                            <h5 class="card-title">{{result.title}}</h5>
+                                            <p class="card-text">
+                                            {{result.description}}
+                                            </p>
+                                            <a href="{% url 'recommapp:addtocart' result.id %}" class="btn btn-primary">AddToCart</a>
+                                        </div>
+                                     </div>
+                                 </div>
+                            </div>
+                   
+                    {% endfor %}
+                </div>
+             </div>   
+       
+        
+        </div>
+
+
+
+        <div class= 'col-md-4' style="margin-top:40px">
+            <h3>Recommended Items:</h3>
+            <div class="card" >
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">1)......</li>
+                    <li class="list-group-item">2)......</li>
+                    <li class="list-group-item">3)......</li>
+                    <li class="list-group-item">4)......</li>
+                    <li class="list-group-item">5)......</li>
+                    <li class="list-group-item">6)......</li>
+                </ul>
+            </div>
+        </div
+
+    
+    </div>
+</div>
+
+ 
+{% endblock %}

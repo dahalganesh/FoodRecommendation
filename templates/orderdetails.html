@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+    <div class ='container' style="margin:80px;">
+        <div class ='row'>
+            <div class='col-md-6 mx-auto'>
+                <h2> Your Order Details </h2>
+                <p><span style='font-weight:bold'>Order_ID:</span>ORDER_{{ord_obj.id}}</p>
+                <p><span style='font-weight:bold'>Order Status:</span>{{ord_obj.order_status}}</p>
+                <p><span style='font-weight:bold'>Order Time:</span>{{ord_obj.date_added}}({{ord_obj.date_added|timesince}},ago)</p>
+                <p><span style='font-weight:bold'>Information:</span>{{ord_obj.Order_name}},{{ord_obj.mobile}}</p>
+                <p><span style='font-weight:bold'>Order Address:</span>{{ord_obj.address}}({{ord_obj.email}})</p>
+            <h3>Order Items:</h3>
+            <table class ='table'>
+                <thead>
+                <tr>
+                    <th>SN</th>
+                     <th>Image</th>
+                      <th>Items</th>
+                       <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>action</th>
+                         
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for cp in ord_obj.cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="{{cp.product.image.url}} " style= " height:60px;width:60px;" ></td>
+                        <td>{{cp.product.title}}({{cp.product.id}})</td>
+                        <td>{{cp.quantity}}</td>
+                        <td>{{cp.subtotal}}</td>
+                        <td><a href=" {% url 'recommapp:review' cp.product.id %}" > <button class = 'btn btn-primary'> Review</button></a></td>
+
+                    </tr>
+                    {% endfor%}
+                    <tr>
+                        <th colspan ='4'>Total:</th>
+                        <th>Rs.{{ord_obj.total|intcomma}}</th>
+                    </tr>      
+                    </tbody>
+            </table>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}

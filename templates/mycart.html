@@ -1,33 +1,64 @@
-<html>  
-  <div class = 'container'>
-    <div class = 'row'>
-        <div class = 'col-md-8'>
-            <h3> list of item in my cart</h3>
-                <table class='table'> 
-                    <thead>
-                        <tr>
-                        <th>SN</th>
-                          <th>Product</th>
-                            <th>Rate</th>
-                              <th>Quantity</th>
-                                <th>Subtotal</th>
-                                  <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       {% for c in cart.cartproduct_set.all %}
-                        <tr>
-                          <td> {{forloop.counter}} </td>
-                          <td> {{c.product.title}} </td>
-                          <td> {{c.rate}} </td>
-                          <td> {{c.quantity}} </td>
-                          <td> {{c.subtotal}} </td>
-                        </tr>
-                       {% endfor %}
-                    </tbody>
-                </table>
+  
 
+
+
+{% extends 'base.html' %}
+
+ 
+
+  {% block content %}
+      <html>
+        <div class = 'container'style = "margin:80px;" >
+          <div class = 'row'>
+              <div class = 'col-md-9'>
+                  <h3> list of item in my cart:</h3>
+                      <table class='table'> 
+                          <thead>
+                              <tr>
+                              <th>SN</th>
+                                <th>Image</th>
+                                <th>Product</th>
+                                  <th>Rate</th>
+                                    <th>Quantity</th>
+                                      <th>Subtotal</th>
+                                        <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            {% for c in cart.cartproduct_set.all %}
+                              <tr>
+                                <td> {{forloop.counter}} </td>
+                                <td> <img src="{{c.product.image.url}} " style= " height:60px;width:60px;" ></td>
+                                <td> {{c.product.title}} </td>
+                                <td> {{c.rate}} </td>
+                                <td> {{c.quantity}} </td>
+                                <td> {{c.subtotal}} </td>
+                                <td>
+                                  <a href="{% url 'recommapp:cartmanage' c.id %}?Action=inc" class ="btn btn-primary"> + </a>
+                                  <a href="{% url 'recommapp:cartmanage' c.id %}?Action=dcr" class ='btn btn-warning'> - </a>
+                                  <a href="{% url 'recommapp:cartmanage' c.id %}?Action=rmv" class =' btn btn-danger'> x </a>
+                                </td>
+                              </tr>
+                            
+                            {% endfor %}
+                            <tr>
+                                <th colspan ='5'>Total</th>
+                                <th>Rs.{{cart.total}}</th>
+                                {% if cart.cartproduct_set.all %}
+                                <th><a href="{% url 'recommapp:cartdelete' %}" class =' btn btn-danger'>Delete Cart</a></th>
+                                {% endif %}
+                              </tr>
+                              {% if cart.cartproduct_set.all %}
+                              <tr>
+                                  <th><a href="{% url 'recommapp:checkout' %}" class ='btn btn-warning'> CheckOut Order</a> </th>
+                                </tr>
+                                {% endif %}
+                          </tbody>
+
+                      </table>
+
+              </div>
+          </div>
         </div>
-    </div>
-  </div>
-</html>
+      </html>   
+  {% endblock %}

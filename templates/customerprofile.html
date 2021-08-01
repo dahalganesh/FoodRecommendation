@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <div class = 'container' style ='margin:80px'>
+    <div class ='row'>
+
+        <div class = 'col-md-4'>
+            <h3> Customer Details Information</h3><hr>
+            <p><span style='font-weight:bold'>Name:</span>{{customer.full_name}}</p>
+            <p><span  style='font-weight:bold'>Username:</span>{{customer.user.username}}</p>
+              <p><span  style='font-weight:bold'>Email:</span>{{customer.user.email}}</p>
+                <p><span  style='font-weight:bold'>Address:</span>{{customer.address}}</p>
+                  <p><span style='font-weight:bold'>Phone:</span>{{customer.address}}</p>
+
+        </div>
+        <div class ='col-md-8'>
+            <h3> Previous Order Details</h3><hr>
+
+            <table class = 'table'>
+              <thead>
+              <tr>
+                  <th>SN</th>
+                  <th>Order_ID</th>
+                  <th>Amount</th>
+                  <th>Order Date</th>
+                   <th>Status</th>
+                  
+                  
+              </tr>
+              
+              </thead>
+
+              <tbody>
+                {% for ord in orders %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td><a href="{% url 'recommapp:orderdetails' ord.pk %}">#ORDER_{{ord.id}}</a></td>
+                  <td>{{ord.total}}</td>
+                  <td>{{ord.date_added|timesince}},ago</td>
+                  <td>{{ord.order_status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+
+    </div>
+ <div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'adminpages/adminbase.html' %}
+{% load humanize %}
+
+{% block content %}
+ <div class ='container' style="margin:80px;">
+        <div class ='row'>
+            <div class='col-md-12'>
+            <h3> Order Pendings</h3>
+              
+            <table class ='table'>
+                <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Order_ID</th>
+                     <th>Customer</th>
+                       <th>Order On</th>
+                        <th>Amount</th>
+                         
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for order in pendingorders %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a href="{% url 'recommapp:adminorderdetails' order.id %}">#Order_ID{{order.id}}</a></td>
+                        <td>{{order.order_name}}</td>
+                        
+                        <td>{{order.date_added}}</td>
+                        <td>{{order.total}}</td>
+
+                    </tr>
+                    {% endfor%}
+                    
+                    </tbody>
+            </table>
+            </div>
+        </div>
+    
+    </div>
+
+
+{% endblock %}
+

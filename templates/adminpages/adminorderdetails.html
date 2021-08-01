@@ -1,0 +1,65 @@
+{% extends 'adminpages/adminbase.html' %}
+{% load humanize %}
+
+{% block content %}
+
+    
+    <div class ='container' style="margin:80px;">
+        <div class ='row'>
+            <div class='col-md-6 mx-auto'>
+                <h2> Your Order Details </h2>
+                <p><span style='font-weight:bold'>Order_ID:</span>ORDER_{{ord_obj.id}}</p>
+                <p><span style='font-weight:bold'>Order Status:</span>{{ord_obj.order_status}}</p>
+                <p><span style='font-weight:bold'>Order Time:</span>{{ord_obj.date_added}}({{ord_obj.date_added|timesince}},ago)</p>
+                <p><span style='font-weight:bold'>Information:</span>{{ord_obj.Order_name}},{{ord_obj.mobile}}</p>
+                <p><span style='font-weight:bold'>Order Address:</span>{{ord_obj.address}}({{ord_obj.email}})</p>
+                <p><span class="font-weight-bold">Payment Information: </span>  Using {{ord_obj.payment_method}} ({% if ord_obj.payment_completed %}Payment Completed{% else %}Not Paid{% endif %})</p>
+            
+
+            <h3>Order Items:</h3>
+            <table class ='table'>
+                <thead>
+                <tr>
+                    <th>SN</th>
+                     <th>Image</th>
+                      <th>Items</th>
+                       <th>Quantity</th>
+                        <th>Subtotal</th>
+                         
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for cp in ord_obj.cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="{{cp.product.image.url}} " style= " height:60px;width:60px;" ></td>
+                        <td>{{cp.product.title}}({{cp.product.id}})</td>
+                        <td>{{cp.quantity}}</td>
+                        <td>{{cp.subtotal}}</td>
+
+                    </tr>
+                    {% endfor%}
+                     <tr>
+                            <th colspan ='4'>Total:</th>
+                            <th>Rs.{{ord_obj.total|intcomma}}</th>
+                    </tr>
+                    </tbody>
+            </table>
+            <form action = "{% url 'recommapp:adminorderstatuschange' ord_obj.id %}"  method ="POST">
+                {% csrf_token %}
+                <select name ="status">
+                    {% for i, j in allstatus %} <option value = "{{i}}"{% if i == ord_obj.order_status %}selected{% endif %}>{{j}}</option>
+                    {% endfor %}
+                </select>
+                <button class = 'btn-btn-info'>Change</button>
+
+            
+            </form>
+
+            </div>
+        </div>
+    
+    </div>
+
+
+{% endblock %}
